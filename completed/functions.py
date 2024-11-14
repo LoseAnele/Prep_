@@ -1,4 +1,3 @@
-"""  """
 def is_prime(n):
     """
     Check if a number is prime.
@@ -13,7 +12,16 @@ def is_prime(n):
         >>> is_prime(7)
         True
     """
-    pass
+    # Check if number is less than or equal to 1, which are not prime numbers
+    if n <= 1:
+        return False
+    # Loop from 2 to square root of n to check for factors
+    for i in range(2, int(n ** 0.5) + 1):
+        # If n is divisible by i, then it's not prime
+        if n % i == 0:
+            return False
+    # If no factors found, n is prime
+    return True
 
 def count_vowels(text):
     """
@@ -29,7 +37,15 @@ def count_vowels(text):
         >>> count_vowels("Hello World")
         3
     """
-    pass
+    # Initialize counter variable to 0
+    count = 0
+    # Loop through each character in the text after converting to lowercase
+    for char in text.lower():
+        # If character is a vowel, increment counter
+        if char in 'aeiou':
+            count += 1
+    # Return total count of vowels
+    return count
 
 def find_max(numbers):
     """
@@ -45,7 +61,11 @@ def find_max(numbers):
         >>> find_max([1, 5, 3, 9, 2])
         9
     """
-    pass
+    # If list is empty, raise ValueError
+    if not numbers:
+        raise ValueError("List cannot be empty")
+    # Return maximum value using built-in max function
+    return max(numbers)
 
 def sum_digits(number):
     """
@@ -61,7 +81,14 @@ def sum_digits(number):
         >>> sum_digits(1234)
         10
     """
-    pass
+    # Initialize total sum to 0
+    total = 0
+    # Convert number to string and loop through each digit
+    for digit in str(abs(number)):
+        # Add integer value of digit to total
+        total += int(digit)
+    # Return sum of all digits
+    return total
 
 def reverse_string(text):
     """
@@ -77,7 +104,8 @@ def reverse_string(text):
         >>> reverse_string("hello")
         "olleh"
     """
-    pass
+    # Return reversed string using slice notation with step -1
+    return text[::-1]
 
 def factorial(n):
     """
@@ -93,7 +121,16 @@ def factorial(n):
         >>> factorial(5)
         120
     """
-    pass
+    # Handle special case of 0 factorial
+    if n == 0:
+        return 1
+    # Initialize result to 1
+    result = 1
+    # Multiply result by each number from 1 to n
+    for i in range(1, n + 1):
+        result *= i
+    # Return factorial result
+    return result
 
 def is_even(n):
     """
@@ -109,7 +146,8 @@ def is_even(n):
         >>> is_even(10)
         True
     """
-    pass
+    # Return True if number is divisible by 2, False otherwise
+    return n % 2 == 0
 
 def sum_even_numbers(numbers):
     """
@@ -125,7 +163,15 @@ def sum_even_numbers(numbers):
         >>> sum_even_numbers([1, 2, 3, 4, 5, 6])
         12
     """
-    pass
+    # Initialize total sum to 0
+    total = 0
+    # Loop through each number in the list
+    for num in numbers:
+        # If number is even, add it to total
+        if num % 2 == 0:
+            total += num
+    # Return sum of even numbers
+    return total
 
 def count_char(text, char):
     """
@@ -142,7 +188,8 @@ def count_char(text, char):
         >>> count_char("hello world", 'l')
         3
     """
-    pass
+    # Use built-in count method to count occurrences of char in text
+    return text.count(char)
 
 def second_largest(numbers):
     """
@@ -161,7 +208,13 @@ def second_largest(numbers):
         >>> second_largest([3, 1, 4, 1, 5, 9, 2])
         5
     """
-    pass
+    # Convert list to set to remove duplicates and sort in descending order
+    unique_sorted = sorted(set(numbers), reverse=True)
+    # If less than 2 unique numbers, raise error
+    if len(unique_sorted) < 2:
+        raise ValueError("All numbers are identical")
+    # Return second element (second largest)
+    return unique_sorted[1]
 
 def is_leap_year(year):
     """
@@ -177,7 +230,8 @@ def is_leap_year(year):
         >>> is_leap_year(2020)
         True
     """
-    pass
+    # Return True if year is divisible by 4 and either not divisible by 100 or divisible by 400
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
 def is_anagram(str1, str2):
     """
@@ -194,7 +248,12 @@ def is_anagram(str1, str2):
         >>> is_anagram("listen", "silent")
         True
     """
-    pass
+    # Remove spaces and convert to lowercase for str1
+    str1 = ''.join(str1.lower().split())
+    # Remove spaces and convert to lowercase for str2
+    str2 = ''.join(str2.lower().split())
+    # Return True if sorted characters are equal
+    return sorted(str1) == sorted(str2)
 
 def sum_even_indices(numbers):
     """
@@ -210,7 +269,14 @@ def sum_even_indices(numbers):
         >>> sum_even_indices([1, 2, 3, 4, 5, 6])
         9
     """
-    pass
+    # Initialize total sum to 0
+    total = 0
+    # Loop through list with step 2 to get even indices
+    for i in range(0, len(numbers), 2):
+        # Add number at even index to total
+        total += numbers[i]
+    # Return sum of numbers at even indices
+    return total
 
 def middle_character(text):
     """
@@ -229,7 +295,13 @@ def middle_character(text):
         >>> middle_character("hello")
         "l"
     """
-    pass
+    # If string is empty, raise error
+    if not text:
+        raise ValueError("String cannot be empty")
+    # Calculate middle index
+    mid = len(text) // 2
+    # Return two middle characters if length is even, one if odd
+    return text[mid-1:mid+1] if len(text) % 2 == 0 else text[mid]
 
 def longest_word(sentence):
     """
@@ -248,7 +320,20 @@ def longest_word(sentence):
         >>> longest_word("The quick brown fox")
         "quick"
     """
-    pass
+    # If sentence is empty, raise error
+    if not sentence:
+        raise ValueError("Sentence cannot be empty")
+    # Split sentence into words
+    words = sentence.split()
+    # Initialize longest word as first word
+    longest = words[0]
+    # Loop through remaining words
+    for word in words[1:]:
+        # Update longest if current word is longer
+        if len(word) > len(longest):
+            longest = word
+    # Return longest word found
+    return longest
 
 def generate_multiples(n, count):
     """
@@ -265,7 +350,14 @@ def generate_multiples(n, count):
         >>> generate_multiples(3, 5)
         [3, 6, 9, 12, 15]
     """
-    pass
+    # Initialize empty result list
+    result = []
+    # Loop count times
+    for i in range(1, count + 1):
+        # Append multiple of n to result
+        result.append(n * i)
+    # Return list of multiples
+    return result
 
 def two_sum(nums, target):
     """
@@ -274,7 +366,19 @@ def two_sum(nums, target):
         Return the indexes in a list format.
         [1,2,3,4,5], 9 = [3, 4]
     """
-    pass
+    # Initialize dictionary to store seen numbers
+    seen = {}
+    # Loop through list with index and value
+    for i, num in enumerate(nums):
+        # Calculate complement needed to reach target
+        complement = target - num
+        # If complement exists in seen dictionary, return indices
+        if complement in seen:
+            return [seen[complement], i]
+        # Store current number and index
+        seen[num] = i
+    # Return empty list if no solution found
+    return []
 
 def is_palindrome(word):
     """
@@ -283,7 +387,8 @@ def is_palindrome(word):
         Create a program that accepts one parameter word, 
         return True if word is palindrome else returns False 
     """
-    pass
+    # Compare word with its reverse
+    return word == word[::-1]
 
 def fibonacci(num: int):
     """
@@ -292,14 +397,34 @@ def fibonacci(num: int):
         usually starting with 0 and 1. 
         Create a program that accepts one parameter num and returns 
     """
-    pass
+    # Handle base cases
+    if num <= 1:
+        return num
+    # Initialize first two numbers
+    prev, curr = 0, 1
+    # Calculate fibonacci number through iteration
+    for _ in range(2, num + 1):
+        prev, curr = curr, prev + curr
+    # Return final fibonacci number
+    return curr
 
 def find_duplicates(array: list):
     """
         Create a program that accepts one parameter array 
         and returns a list of duplicates in the array
     """
-    pass
+    # Initialize sets for seen and duplicate numbers
+    seen = set()
+    duplicates = set()
+    # Loop through array
+    for num in array:
+        # If number already seen, add to duplicates
+        if num in seen:
+            duplicates.add(num)
+        # Add number to seen set
+        seen.add(num)
+    # Convert duplicates set to list and return
+    return list(duplicates)
 
 """ Searching Algorithms """
 def binary_search(array: list, target: int):
@@ -311,7 +436,23 @@ def binary_search(array: list, target: int):
         Create a program that accepts two parameters array and target, 
         uses the binary search algorithm to return an index of the target number, -1 if not found.
     """
-    pass
+    # Initialize left and right pointers
+    left, right = 0, len(array) - 1
+    # Continue while search space exists
+    while left <= right:
+        # Calculate middle index
+        mid = (left + right) // 2
+        # If target found, return index
+        if array[mid] == target:
+            return mid
+        # If middle element is less than target, search right half
+        elif array[mid] < target:
+            left = mid + 1
+        # If middle element is greater than target, search left half
+        else:
+            right = mid - 1
+    # Return -1 if target not found
+    return -1
 
 def linear_search(arr, target):
     """
@@ -326,7 +467,13 @@ def linear_search(arr, target):
         :param target: The value to search for
         :return: Index of target if found, -1 if not found
     """
-    pass
+    # Loop through array with index
+    for i in range(len(arr)):
+        # If current element matches target, return its index
+        if arr[i] == target:
+            return i
+    # Return -1 if target not found
+    return -1
 
 """ Sorting Algorithms """
 def bubble_sort(array: list):
@@ -339,7 +486,17 @@ def bubble_sort(array: list):
         :param array: A list of integers to be sorted.
         :return: A sorted list of integers.
     """
-    pass
+    # Get length of array
+    n = len(array)
+    # Outer loop for passes
+    for i in range(n):
+        # Inner loop for comparisons
+        for j in range(0, n - i - 1):
+            # If current element is greater than next element, swap them
+            if array[j] > array[j + 1]:
+                array[j], array[j + 1] = array[j + 1], array[j]
+    # Return sorted array
+    return array
 
 def merge_sort(array: list):
     """
@@ -351,7 +508,16 @@ def merge_sort(array: list):
         :param array: A list of integers to be sorted.
         :return: A sorted list of integers.
     """
-    pass
+    # Base case: if array has 1 or fewer elements, return it
+    if len(array) <= 1:
+        return array
+    # Calculate middle index
+    mid = len(array) // 2
+    # Split array into left and right halves
+    left_half = array[:mid]
+    right_half = array[mid:]
+    # Recursively sort and merge halves
+    return merge(merge_sort(left_half), merge_sort(right_half))
 
 def merge(left: list, right: list):
     """
@@ -364,7 +530,27 @@ def merge(left: list, right: list):
         :param right: The second sorted list.
         :return: A single sorted list containing elements from both input lists.
     """
-    pass
+    # Initialize merged result list
+    merged = []
+    # Initialize indices for both lists
+    left_index = 0
+    right_index = 0
+    # Compare elements from both lists and merge
+    while left_index < len(left) and right_index < len(right):
+        # If left element is smaller or equal, add it to merged list
+        if left[left_index] <= right[right_index]:
+            merged.append(left[left_index])
+            left_index += 1
+        # If right element is smaller, add it to merged list
+        else:
+            merged.append(right[right_index])
+            right_index += 1
+    # Add remaining elements from left list
+    merged.extend(left[left_index:])
+    # Add remaining elements from right list
+    merged.extend(right[right_index:])
+    # Return merged sorted list
+    return merged
 
 def quicksort(array: list):
     """
@@ -376,7 +562,19 @@ def quicksort(array: list):
         :param array: A list of integers to be sorted.
         :return: A sorted list of integers.
     """
-    pass
+    # Base case: if array has 1 or fewer elements, return it
+    if len(array) <= 1:
+        return array
+    # Choose middle element as pivot
+    pivot = array[len(array) // 2]
+    # Create lists for elements less than pivot
+    left = [x for x in array if x < pivot]
+    # Create list for elements equal to pivot
+    middle = [x for x in array if x == pivot]
+    # Create list for elements greater than pivot
+    right = [x for x in array if x > pivot]
+    # Recursively sort and combine lists
+    return quicksort(left) + middle + quicksort(right)
 
 """ Data Structures """
 """ List """
@@ -390,7 +588,14 @@ def square_list(arr: list):
         :param arr: A list of integers to be squared.
         :return: A list with squared values.
     """
-    pass
+    # Initialize empty list for squared values
+    squared_list = []
+    # Loop through input list
+    for x in arr:
+        # Append squared value to result list
+        squared_list.append(x**2)
+    # Return list of squared values
+    return squared_list
 
 def even_numbers(arr: list):
     """
@@ -402,7 +607,15 @@ def even_numbers(arr: list):
         :param arr: A list of integers to be filtered.
         :return: A list containing only even numbers.
     """
-    pass
+    # Initialize empty list for even numbers
+    even_list = []
+    # Loop through input list
+    for x in arr:
+        # If number is even, append to result list
+        if x % 2 == 0:
+            even_list.append(x)
+    # Return list of even numbers
+    return even_list
 
 def flattened(arr: list):
     """
@@ -414,7 +627,16 @@ def flattened(arr: list):
         :param arr: A nested list of integers.
         :return: A flattened list containing all elements.
     """
-    pass
+    # Initialize empty list for flattened result
+    flattened_list = []
+    # Loop through each sublist in input list
+    for sublist in arr:
+        # Loop through each item in sublist
+        for item in sublist:
+            # Append item to flattened list
+            flattened_list.append(item)
+    # Return flattened list
+    return flattened_list
 
 def extend(arr: list, ext: list):
     """
@@ -427,7 +649,10 @@ def extend(arr: list, ext: list):
         :param ext: The list to extend with.
         :return: The extended list.
     """
-    pass
+    # Extend first list with second list
+    arr.extend(ext)
+    # Return extended list
+    return arr
 
 def reverse(arr: list):
     """
@@ -439,7 +664,10 @@ def reverse(arr: list):
         :param arr: A list to be reversed.
         :return: The reversed list.
     """
-    pass
+    # Reverse list in place
+    arr.reverse()
+    # Return reversed list
+    return arr
 
 def sym_diff(set1):
     """
@@ -455,7 +683,10 @@ def sym_diff(set1):
         >>> sym_diff({1, 2, 3, 4, 5})
         {1, 2, 3, 6, 7}
     """
-    pass
+    # Define second set
+    other_set = {4, 5, 6, 7}
+    # Return symmetric difference of two sets
+    return set1.symmetric_difference(other_set)
 
 def subset():
     """
@@ -468,7 +699,8 @@ def subset():
         >>> subset()
         {1, 2, 3}
     """
-    pass
+    # Return a subset of {1, 2, 3, 4, 5}
+    return {1, 2, 3}
 
 def union_with_frozen(sample_set, frozen_set):
     """
@@ -485,4 +717,23 @@ def union_with_frozen(sample_set, frozen_set):
         >>> union_with_frozen({1, 2, 3, 4, 5}, frozenset([1, 2, 3]))
         {1, 2, 3, 4, 5}
     """
-    pass
+    # Return union of regular set and frozen set
+    return sample_set.union(frozen_set)
+
+def is_disjoint(set1, set2):
+    """
+    Check if two sets are disjoint (have no elements in common).
+    
+    Args:
+        set1 (set): First set to compare
+        set2 (set): Second set to compare
+        
+    Returns:
+        bool: True if sets are disjoint, False otherwise
+        
+    Example:
+        >>> is_disjoint({1, 2, 3}, {4, 5, 6})
+        True
+    """
+    # Return True if sets have no elements in common
+    return set1.isdisjoint(set2)
